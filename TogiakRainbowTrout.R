@@ -1602,6 +1602,8 @@ ggsave(filename = "Fig6_TNWRRBTPaper.tiff", plot = Fig6plot, device = "tiff",
 
 # 6.13-Surplus code---------------------------------------------------------------------------------------------------------------
 
+# This code works but was not used for the paper.
+
 #dapc plots-------
 dapc2_MemProbPlot2 <- ggplot(filter(MemProbWooSna, RiverCode %in% RiverFactors[3:9]), aes(x = Ind, y = PostProb, fill = Group, color = Group)) + 
   geom_col() +
@@ -2034,7 +2036,7 @@ PW_Gtest_NS <- PW_Gtest %>%
  
  
  
- # Optional FIGURE X: Use DAPC in adegenet to estimate membership probability of individuals in collections within select watersheds.---------
+ # Optional FIGURE: Use DAPC in adegenet to estimate membership probability of individuals in collections within select watersheds.---------
  # KN
  inputKN <- filter(inputFinal, WatershedCode %in% c("KN")) %>% 
    filter(!(Ind %in% FirstGenMig$Ind))
@@ -2216,7 +2218,7 @@ PW_Gtest_NS <- PW_Gtest %>%
  #labs(fill = "Assigned")
  
  
- # Optional: Print FIGURE X to directory---------------------------------------------------------------------------------
+ # Optional: Print FIGURE to directory---------------------------------------------------------------------------------
  ggsave(filename = "FigX_TNWRRBTPaper.tiff", plot = Fig4Plot, device = "tiff",
         height=4.5, width = 3.5, units="in", dpi=600)
  
