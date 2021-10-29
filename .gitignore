@@ -130,3 +130,6 @@ newClustersList.rds
 rbtBB97_10_552_b.csv
 tempGrpsFile.rds
 ~WRL1362.tmp
+.Rdata
+.httr-oauth
+.DS_Store
