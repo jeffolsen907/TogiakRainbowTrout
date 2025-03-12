@@ -71,7 +71,7 @@ Tib2Genepop <- function(x, y, z) {
   write.table(NewGP_Pop,z,quote=FALSE,row.names=F,col.names=F,sep="\t",na="")    
 }
 
-#============================================================================================================================
+
 
 
 # 1=PREPARE DATA=============================================================================================================
@@ -88,7 +88,7 @@ files = dir(path = InputDataDir, pattern="*.csv")
 # Define input
 # Read the input data files from the "InputFiles" folder in the TogiakRainbowTrout R-project and create tibble "input"
 input <-  paste(InputDataDir,files,sep="") %>% 
-  # Use the map function in purrr to read the input data files from the quantstudia as lists. The first 17 rows are skipped and the four columns are type "character".
+  # Use the map function in purrr to read the input data files from the quantstudio as lists. The first 17 rows are skipped and the four columns are type "character".
   map(read_csv, skip = 17, col_types = 'cccc') %>% 
   # Use the reduce function in purrr to combine the lists (data files) by row using rbind.
   reduce(rbind) %>% 
@@ -507,8 +507,8 @@ LocBinomTest <- dbinom(0:length(PopLTalfa$Pop), size = length(PopLTalfa$Pop), pr
 LocBinomTestTable <- tibble('NumSigAggregations' = 0:length(PopLTalfa$Pop), 'LocBinomExp' = round(LocBinomTest * length(LocLTalfa$Loc), 2), 'LocBinomObs' = as.vector(table(factor(LocSigTest$ST, levels = 0:length(PopLTalfa$Pop)))))
 LocBinomTestTableTidy <- gather(LocBinomTestTable, 'LocBinomExp', 'LocBinomObs', key = 'ObsOrExp', value = 'NumLoci')
 # Plot results for loci across collections
-LocBinomTestPlot <- ggplot(LocBinomTestTableTidy) + 
-  geom_bar(aes(NumSigAggregations, NumLoci, fill = ObsOrExp), position = 'dodge',  stat = 'identity') + 
+LocBinomTestPlot <- ggplot(data = LocBinomTestTableTidy) + 
+  geom_bar(aes(x = NumSigAggregations, y = NumLoci, fill = ObsOrExp), position = 'dodge',  stat = 'identity') + 
   scale_fill_manual(values = c("black", "gray"), labels = c(" Expected", " Observed")) + 
   theme_bw() + 
   ggtitle("Loci") +
